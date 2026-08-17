@@ -1,0 +1,186 @@
+{% load static %}
+
+    <!-- Main Footer Start -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Main Footer Box Start -->
+                    <div class="main-footer-box">
+                        <!-- Footer Logo Start -->
+                        <div class="footer-logo">
+                            <img src="{% static 'web/images/logo.png' %}" alt="">
+                        </div>
+                        <!-- Footer Logo End -->
+                        
+                        <!-- Footer Contact Details Start -->
+                        <div class="footer-contact-details">
+                            <!-- Footer Contact Item Start -->
+                            <div class="footer-contact-item">
+                                <div class="icon-box">
+                                    <img src="{% static 'web/images/icon-phone.svg' %}" alt="">
+                                </div>
+                                <div class="footer-contact-item-content">
+                                    <p>phone number</p>
+                                    <h3><a href="tel:+919895875100">+91 9895875100</a></h3>
+                                </div>
+                            </div>
+                            <!-- Footer Contact Item End -->
+
+                            <!-- Footer Contact Item Start -->
+                            <div class="footer-contact-item">
+                                <div class="icon-box">
+                                    <img src="{% static 'web/images/icon-mail.svg' %}" alt="">
+                                </div>
+                                <div class="footer-contact-item-content">
+                                    <p>email address</p>
+                                    <h3><a href="mailto:thefiltercompany253@gmail.com">thefiltercompany253@gmail.com</a></h3>
+                                </div>
+                            </div>
+                            <!-- Footer Contact Item End -->
+
+                            <!-- Footer Contact Item Start -->
+                            <div class="footer-contact-item">
+                                <div class="icon-box">
+                                    <img src="{% static 'web/images/icon-location.svg' %}" alt="">
+                                </div>
+                                <div class="footer-contact-item-content">
+                                    <p>location</p>
+                                    <h3>  Cheruvannur, Kozhikode</h3>
+                                </div>
+                            </div>
+                            <!-- Footer Contact Item End -->
+                        </div>
+                        <!-- Footer Contact Details End --> 
+                    </div>
+                    <!-- Main Footer Box End -->
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <!-- About Footer Start -->
+                    <div class="about-footer">
+                        <!-- Footer Links Start -->
+                    <div class="footer-links">
+                        <h3>About The Filter Company</h3>
+                        <p>
+                            At The Filter Company, we provide reliable water purification and filtration
+                            solutions for homes, businesses, and industries. With advanced RO, UV, UF,
+                            and mineral enrichment technologies, we are committed to delivering clean,
+                            safe, healthy, and great-tasting water with quality, performance, and customer
+                            satisfaction at the heart of everything we do.
+                        </p>
+                    </div>
+
+                        
+                        
+                        
+                        <!-- Footer Links End -->
+
+                        <!-- Footer Social Links Start -->
+                        <div class="footer-social-links">
+                            <ul>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>                                    								
+                                <li><a href="#"><i class="fa-brands fa-pinterest-p"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Social Links End -->
+                    </div>
+                    <!-- About Footer End -->               
+                </div>
+
+                <div class="col-lg-2 col-6">
+                    <!-- Footer Links Start -->
+                    <div class="footer-links">
+                        <h3>Quick link</h3>
+                        <ul>
+                            <li><a href="/">home</a></li>
+                            <li><a href="{% url 'web:about' %}">about us</a></li>
+                            <li><a href="{% url 'web:products' %}">products</a></li>
+                            <li><a href="{% url 'web:blog' %}">blog</a></li>
+                            <li><a href="{% url 'web:contact' %}">Contact</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- Footer Links End -->
+                </div>
+
+                <div class="col-lg-2 col-6">
+                    <!-- Footer Links Start -->
+                    <div class="footer-links">
+                        <h3>Products</h3>
+                        <ul>
+                            {% for service in product_categories %}
+                            <li><a href="{{service.get_absolute_url}}">{{service.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- Footer Links End -->
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <!-- Newsletter Form Start -->
+                    <div class="newsletter-form footer-links">
+                        <h3>Subscribe</h3>
+                        <p>Stay updated with the latest trends offers by subscribing to our newsletter.</p>
+                        <form  action="#" method="get">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="email" name="emaill" class="form-control" placeholder="Enter Your Email" required="">
+                                <button type="submit" class="newsletter-btn"><i class="fa-regular fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Newsletter Form End -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Copyright Start -->
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Footer Copyright Text Start -->
+                        <div class="footer-copyright-text text-center">
+                            <p>&copy; {% now 'Y' %} The Filter Company. All Rights Reserved.</p>
+                        </div>
+                        <!-- Footer Copyright Text End -->
+                    </div>
+
+                   
+                </div>
+            </div>
+        </div>
+        <!-- Footer Copyright End -->
+    </footer>
+    <!-- Main Footer End -->
+
+    <div class="floating-buttons-container">
+        <div class="floating-button whatsapp">
+            <div class="tooltip">WhatsApp Chat</div>
+            <a href="https://wa.me/+919895875100" target="_blank">
+                <div class="icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div class="text">
+                    WhatsApp
+                    <small>+91 9895875100</small>
+                </div>
+            </a>
+        </div>
+    
+        <div class="floating-button call">
+            <div class="tooltip">Call Now</div>
+            <a href="tel:+919895875100" target="_blank">
+                <div class="icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <div class="text">
+                    Call Now
+                    <small>+91 9895875100</small>
+                </div>
+            </a>
+        </div>
+    </div>

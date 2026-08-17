@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+            <!-- Primary Meta Tags -->
+            <title>{% block title %}{% endblock title %} | The Filter Company | Advanced Water Purification & Filtration Solutions</title>
+
+            <meta name="title" content="The Filter Company | Advanced Water Purification & Filtration Solutions" />
+
+            <meta name="description" content="The Filter Company provides advanced water purification and filtration solutions including RO, UV, UF, and mineral enrichment systems for homes, businesses, and industries." />
+
+            <meta name="keywords" content="water purification, water purifier, RO water purifier, UV water purification, UF filtration, water filtration systems, water treatment solutions, domestic water purifier, commercial water purifier, industrial water purification, mineral enrichment" />
+
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website" />
+
+            <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+
+            <meta property="og:title" content="The Filter Company | Advanced Water Purification & Filtration Solutions" />
+
+            <meta property="og:description" content="Discover reliable water purification and filtration solutions from The Filter Company, featuring advanced RO, UV, UF, and mineral enrichment technologies for clean, safe, and healthy water." />
+
+            <meta property="og:image" content="{{ request.build_absolute_uri }}static/web/images/meta-tags.png" />
+
+
+            <!-- X (Twitter) -->
+            <meta property="twitter:card" content="summary_large_image" />
+
+            <meta property="twitter:url" content="{{ request.build_absolute_uri }}" />
+
+            <meta property="twitter:title" content="The Filter Company | Advanced Water Purification & Filtration Solutions" />
+
+            <meta property="twitter:description" content="The Filter Company delivers advanced RO, UV, UF, and mineral enrichment water purification solutions for homes, businesses, and industries." />
+
+            <meta property="twitter:image" content="{{ request.build_absolute_uri }}static/web/images/meta-tags.png" />
+
+    
+    <link rel="icon" type="image/png" href="/static/web/images/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/web/images/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/static/web/images/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/web/images/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/static/web/images/favicon/site.webmanifest" />
+	<!-- Google Fonts Css-->
+	<link rel="preconnect" href="{% static 'web/fonts.googleapis.com/index.html' %}">
+    <link rel="preconnect" href="{% static 'web/fonts.gstatic.com/index.html' %}" crossorigin>
+    <link href="{% static 'web/fonts.googleapis.com/css2e3c3.css' %}?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+	<!-- Bootstrap Css -->
+	<link href="{% static 'web/css/bootstrap.min.css' %}?v={{ static_asset_version }}" rel="stylesheet" media="screen">
+	<!-- SlickNav Css -->
+	<link href="{% static 'web/css/slicknav.min.css' %}?v={{ static_asset_version }}" rel="stylesheet">
+	<!-- Swiper Css -->
+	<link rel="stylesheet" href="{% static 'web/css/swiper-bundle.min.css' %}?v={{ static_asset_version }}">
+	<!-- Font Awesome Icon Css-->
+	<link href="{% static 'web/css/all.min.css' %}?v={{ static_asset_version }}" rel="stylesheet" media="screen">
+	<!-- Animated Css -->
+	<link href="{% static 'web/css/animate.css' %}?v={{ static_asset_version }}" rel="stylesheet">
+    <!-- Magnific Popup Core Css File -->
+	<link rel="stylesheet" href="{% static 'web/css/magnific-popup.css' %}?v={{ static_asset_version }}">
+	<!-- Mouse Cursor Css File -->
+	<link rel="stylesheet" href="{% static 'web/css/mousecursor.css' %}?v={{ static_asset_version }}">
+	<!-- Main Custom Css -->
+	<link href="{% static 'web/css/custom.css' %}?v={{ static_asset_version }}" rel="stylesheet" media="screen">
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+
+    {% include 'web/partials/header.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% include 'web/partials/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.3/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Jquery Library File -->
+    <script src="{% static 'web/js/jquery-3.7.1.min.js' %}?v={{ static_asset_version }}"></script>
+    <script src="{% static 'web/js/ajax.js' %}?v={{ static_asset_version }}"></script>
+
+    <!-- Bootstrap js file -->
+    <script src="{% static 'web/js/bootstrap.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Validator js file -->
+    <script src="{% static 'web/js/validator.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- SlickNav js file -->
+    <script src="{% static 'web/js/jquery.slicknav.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Swiper js file -->
+    <script src="{% static 'web/js/swiper-bundle.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Counter js file -->
+    <script src="{% static 'web/js/jquery.waypoints.min.js' %}?v={{ static_asset_version }}"></script>
+    <script src="{% static 'web/js/jquery.counterup.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Isotop js file -->
+	<script src="{% static 'web/js/isotope.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Magnific js file -->
+    <script src="{% static 'web/js/jquery.magnific-popup.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- SmoothScroll -->
+    <script src="{% static 'web/js/SmoothScroll.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Parallax js -->
+    <script src="{% static 'web/js/parallaxie.js' %}?v={{ static_asset_version }}"></script>
+    <!-- MagicCursor js file -->
+    <script src="{% static 'web/js/gsap.min.js' %}?v={{ static_asset_version }}"></script>
+    <script src="{% static 'web/js/magiccursor.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Text Effect js file -->
+    <script src="{% static 'web/js/SplitText.js' %}?v={{ static_asset_version }}"></script>
+    <script src="{% static 'web/js/ScrollTrigger.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- YTPlayer js File -->
+    <script src="{% static 'web/js/jquery.mb.YTPlayer.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Wow js file -->
+    <script src="{% static 'web/js/wow.min.js' %}?v={{ static_asset_version }}"></script>
+    <!-- Main Custom js file -->
+    <script src="{% static 'web/js/function.js' %}?v={{ static_asset_version }}"></script>
+</body>
+</html>
+
