@@ -78,6 +78,58 @@
 <!-- Hero Banner End -->
     <!-- Hero Section End -->
 
+    <!-- Categories Section Start -->
+    {% if product_categories %}
+    <div class="home-categories">
+        <div class="container">
+            <div class="row section-row align-items-end">
+                <div class="col-lg-8">
+                    <div class="section-title">
+                        {% comment %} <h3 class="wow fadeInUp">Categories</h3> {% endcomment %}
+                        <h2 class="wow fadeInUp" data-wow-delay="0.2s" data-cursor="-opaque">
+                            Browse by <span>product category</span>
+                        </h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.4s">
+                            Explore our water purification product categories and quickly find the right solution for your home, office, or industry.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="category-slider-nav wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="category-button-prev"></div>
+                        <div class="category-button-next"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-category-slider">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        {% for category in product_categories %}
+                        <div class="swiper-slide">
+                            <a class="category-card" href="{{ category.get_absolute_url }}">
+                                <figure class="category-card-image image-anime">
+                                    {% if category.image %}
+                                    <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                                    {% else %}
+                                    <span class="category-card-fallback">{{ category.name }}</span>
+                                    {% endif %}
+                                </figure>
+                                <div class="category-card-body">
+                                    <h3>{{ category.name }}</h3>
+                                    <span>View Products</span>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- Categories Section End -->
+
     <!-- About Us Section Start -->
     <div class="about-us mt-5">
         <div class="container">
@@ -217,7 +269,7 @@
                     <div class="service-item wow fadeInUp">
                         <!-- Service Image Start -->
                         <div class="service-image">
-                            <a href="{{product.get_absolute_url}}" data-cursor-text="View">
+                            <a href="{{product.get_absolute_url}}">
                                 <figure class="image-anime">
                                     <img src="{{product.image.url}}" alt="">
                                 </figure>

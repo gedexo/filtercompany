@@ -123,5 +123,12 @@ class Cursor {
         this.visibleInt = setTimeout(() => this.visible = false, this.options.visibleTimeout);
     }
 }
-// Init cursor
-const cursor = new Cursor();
+// Skip the custom cursor on touch devices and small screens.
+const isTouchDevice =
+    window.matchMedia("(pointer: coarse)").matches ||
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0;
+
+if (!isTouchDevice && window.innerWidth > 768) {
+    const cursor = new Cursor();
+}
