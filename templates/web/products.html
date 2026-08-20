@@ -35,13 +35,13 @@
         <div class="container">
             {% if category %}
             <div class="row mb-5 align-items-center">
-                {% if category.image %}
+                {% comment %} {% if category.image %}
                 <div class="col-lg-5 mb-4 mb-lg-0">
                     <figure class="image-anime rounded-4 overflow-hidden category-image-box">
                         <img class="category-image" src="{{ category.image.url }}" alt="{{ category.name }}">
                     </figure>
                 </div>
-                {% endif %}
+                {% endif %} {% endcomment %}
                 <div class="{% if category.image %}col-lg-7{% else %}col-lg-12{% endif %}">
                     <div class="service-content">
                         <h2>{{ category.name }}</h2>
