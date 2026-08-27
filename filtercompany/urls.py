@@ -28,6 +28,10 @@ urlpatterns = (
             "robots.txt",
             TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
         ),
+        path(
+             "google4ce6298505812c01.html",
+                    TemplateView.as_view(template_name="google4ce6298505812c01.html", content_type="text/plain"),
+                ),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
