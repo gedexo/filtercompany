@@ -1,7 +1,24 @@
 from django.contrib import admin
 
-from .models import Blog, Contact, Enquiry, Product, ProductCategory, ProductEnquiry, Testimonial,Logo, Banner, Faq,IframeLink
+from .models import Blog, Contact, Enquiry, Product, ProductCategory, ProductEnquiry, Testimonial, Logo, Banner, Faq, IframeLink, MetaTag
 from django.utils.safestring import mark_safe
+
+
+@admin.register(MetaTag)
+class MetaTagAdmin(admin.ModelAdmin):
+    list_display = ("page", "meta_title", "canonical_url", "image_preview")
+    list_filter = ("page",)
+    search_fields = ("meta_title", "meta_description", "keywords")
+
+    def image_preview(self, obj):
+        if obj.og_image:
+            return mark_safe(
+                f'<img loading="lazy" src="{obj.og_image.url}" style="width:50px;height:50px;object-fit:cover;border-radius:6px;">'
+            )
+        return "-"
+
+    image_preview.short_description = "OG Image"
+
 
 @admin.register(Banner)
 class BannerAdmin(admin.ModelAdmin):

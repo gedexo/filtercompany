@@ -65,6 +65,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 'web.context_processors.products',  
                 'web.context_processors.turnstile',
+                'web.context_processors.seo_meta',
             ],
         },
     },

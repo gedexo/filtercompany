@@ -186,3 +186,36 @@ class IframeLink(models.Model):
 
     def __str__(self):
         return self.link
+
+
+class MetaTag(models.Model):
+    PAGE_CHOICES = [
+        ('home', 'Home Page'),
+        ('about', 'About Us Page'),
+        ('products', 'Products Page'),
+        ('blog', 'Blog List Page'),
+        ('contact', 'Contact Page'),
+    ]
+
+    page = models.CharField(
+        max_length=50,
+        choices=PAGE_CHOICES,
+        unique=True,
+        help_text="Select the page to configure meta tags for."
+    )
+    meta_title = models.CharField(max_length=255, blank=True, null=True)
+    meta_description = models.TextField(blank=True, null=True)
+    keywords = models.TextField(blank=True, null=True, help_text="Comma-separated keywords")
+    canonical_url = models.URLField(max_length=500, blank=True, null=True)
+    schema_description = models.TextField(blank=True, null=True)
+    og_title = models.CharField(max_length=255, blank=True, null=True)
+    og_description = models.TextField(blank=True, null=True)
+    og_image = models.ImageField(upload_to="meta-tags/", blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Meta Tag"
+        verbose_name_plural = "Meta Tags"
+
+    def __str__(self):
+        return self.get_page_display()
+
