@@ -1452,7 +1452,13 @@ header.main-header .header-sticky.active{
 }
 
 .section-footer-text p{
-	margin: 0;
+	display: inline-block;
+	margin: 0 12px 0 0;
+	vertical-align: middle;
+}
+
+.section-footer-text .btn-default{
+	vertical-align: middle;
 }
 
 .section-footer-text p span{
