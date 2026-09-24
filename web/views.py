@@ -86,9 +86,13 @@ def index(request):
 
 
 def about(request):
+    product_categories = ProductCategory.objects.all()
     testimonial = Testimonial.objects.all()
-    context = {"is_about": True,
-               "testimonial": testimonial}
+    context = {
+        "is_about": True,
+        "product_categories": product_categories,
+        "testimonial": testimonial,
+    }
     return render(request, "web/about.html", context)
 
 def products(request):
