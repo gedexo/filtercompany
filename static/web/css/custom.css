@@ -2362,7 +2362,7 @@ header.main-header .header-sticky.active{
 	padding-bottom: 0;
 	border-bottom: none;
 }
-
+/* 
 .faq-accordion .accordion-item .accordion-button::after,
 .faq-accordion .accordion-item .accordion-button.collapsed::after{
 	content: '\f107';
@@ -2377,7 +2377,7 @@ header.main-header .header-sticky.active{
     line-height: normal;
     color: var(--accent-secondary-color);
 	transition: all 0.3s ease-in-out;
-}
+} */
 
 .faq-accordion .accordion-item .accordion-button.collapsed::after{
 	transform: rotate(0deg);
@@ -7827,4 +7827,7 @@ background: transparent;
 	.wwd-cta-actions {
 		justify-content: center;
 	}
+}
+.accordion-item{
+	border:none !important;
 }

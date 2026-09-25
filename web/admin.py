@@ -111,9 +111,9 @@ class ContactAdmin(admin.ModelAdmin):
 #     image_preview.short_description = "Image Preview"
 
 
-# @admin.register(Faq)
-# class FaqAdmin(admin.ModelAdmin):
-#     list_display = ("question", "answer")
+@admin.register(Faq)
+class FaqAdmin(admin.ModelAdmin):
+    list_display = ("question", "answer")
 
 
 # @admin.register(IframeLink)

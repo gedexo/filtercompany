@@ -29,6 +29,12 @@ class ProductCategory(models.Model):
     slug = models.SlugField(unique=True, max_length=120, blank=True)
     image = models.ImageField(upload_to="product-categories/", blank=True, null=True)
     description = HTMLField(blank=True, null=True)
+    #meta
+    meta_title = models.CharField(max_length=255, blank=True, null=True)
+    meta_description=models.TextField(blank=True, null=True)
+    schema_description=models.TextField(blank=True, null=True)
+    key_word=models.TextField(blank=True, null=True)
+    canonical_URL=models.URLField(max_length=200,blank=True, null=True)
 
     class Meta:
         ordering = ["id"]

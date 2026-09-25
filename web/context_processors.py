@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.urls import resolve
 from .models import Blog, MetaTag, Product, ProductCategory
 
 def products(request):
@@ -16,8 +17,15 @@ def turnstile(request):
 
 
 def seo_meta(request):
-    url_name = getattr(request.resolver_match, "url_name", "") if hasattr(request, "resolver_match") and request.resolver_match else ""
-    kwargs = getattr(request.resolver_match, "kwargs", {}) if hasattr(request, "resolver_match") and request.resolver_match else {}
+    resolver_match = getattr(request, "resolver_match", None)
+    if not resolver_match and hasattr(request, "path_info"):
+        try:
+            resolver_match = resolve(request.path_info)
+        except Exception:
+            resolver_match = None
+
+    url_name = getattr(resolver_match, "url_name", "") if resolver_match else ""
+    kwargs = getattr(resolver_match, "kwargs", {}) if resolver_match else {}
 
     default_title = "The Filter Company | Advanced Water Purification & Filtration Solutions"
     default_desc = "The Filter Company provides advanced water purification and filtration solutions including RO, UV, UF, and mineral enrichment systems for homes, businesses, and industries."
@@ -32,13 +40,15 @@ def seo_meta(request):
     og_description = None
     og_image = None
 
-    if url_name == "product_details":
+    view_name = getattr(resolver_match, "view_name", "") if resolver_match else ""
+
+    if url_name == "product_details" or view_name == "web:product_details":
         slug = kwargs.get("slug")
         if slug:
             try:
                 product = Product.objects.filter(slug=slug).first()
                 if product:
-                    meta_title = product.meta_title
+                    meta_title = product.meta_title if product.meta_title else f"{product.name} | The Filter Company"
                     meta_description = product.meta_description
                     keywords = product.key_word
                     canonical_url = product.canonical_URL
@@ -47,13 +57,27 @@ def seo_meta(request):
                         og_image = product.image.url
             except Exception:
                 pass
-    elif url_name == "blog-details":
+    elif url_name == "products_by_category" or view_name == "web:products_by_category":
+        slug = kwargs.get("slug")
+        if slug:
+            try:
+                category = ProductCategory.objects.filter(slug=slug).first()
+                if category:
+                    meta_title = category.meta_title if category.meta_title else f"{category.name} | The Filter Company"
+                    meta_description = category.meta_description
+                    keywords = category.key_word
+                    canonical_url = category.canonical_URL
+                    if category.image:
+                        og_image = category.image.url
+            except Exception:
+                pass
+    elif url_name == "blog-details" or view_name == "web:blog-details":
         slug = kwargs.get("slug")
         if slug:
             try:
                 blog_obj = Blog.objects.filter(slug=slug).first()
                 if blog_obj:
-                    meta_title = blog_obj.meta_title
+                    meta_title = blog_obj.meta_title if blog_obj.meta_title else f"{blog_obj.title} | The Filter Company"
                     meta_description = blog_obj.meta_description
                     keywords = blog_obj.keyword
                     canonical_url = blog_obj.canonical
@@ -66,7 +90,6 @@ def seo_meta(request):
             "index": "home",
             "about": "about",
             "products": "products",
-            "products_by_category": "products",
             "blog": "blog",
             "contact": "contact",
         }
@@ -91,11 +114,14 @@ def seo_meta(request):
     final_desc = meta_description if meta_description else default_desc
     final_keywords = keywords if keywords else default_keywords
 
+    current_uri = request.build_absolute_uri() if hasattr(request, "build_absolute_uri") else ""
+    final_canonical = canonical_url if canonical_url else current_uri
+
     meta = {
         "meta_title": final_title,
         "meta_description": final_desc,
         "keywords": final_keywords,
-        "canonical_url": canonical_url if canonical_url else "",
+        "canonical_url": final_canonical,
         "schema_description": schema_description if schema_description else "",
         "og_title": og_title if og_title else final_title,
         "og_description": og_description if og_description else final_desc,
