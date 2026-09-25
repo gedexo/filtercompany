@@ -1,6 +1,20 @@
 from django.contrib import admin
 
-from .models import Blog, Contact, Enquiry, Product, ProductCategory, ProductEnquiry, Testimonial, Logo, Banner, Faq, IframeLink, MetaTag
+from .models import (
+    Blog,
+    Contact,
+    Enquiry,
+    Product,
+    ProductCategory,
+    ProductEnquiry,
+    ProductFaq,
+    Testimonial,
+    Logo,
+    Banner,
+    Faq,
+    IframeLink,
+    MetaTag,
+)
 from django.utils.safestring import mark_safe
 
 
@@ -30,6 +44,12 @@ class BannerAdmin(admin.ModelAdmin):
     list_filter = ("size",)
     autocomplete_fields = ["product"]
 
+
+class ProductFaqInline(admin.TabularInline):
+    model = ProductFaq
+    extra = 1
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
@@ -43,6 +63,15 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ("category", "is_active")
     prepopulated_fields = {"slug": ("name",)}
     autocomplete_fields = ["category"]
+    inlines = [ProductFaqInline]
+
+
+@admin.register(ProductFaq)
+class ProductFaqAdmin(admin.ModelAdmin):
+    list_display = ("question", "product")
+    list_filter = ("product",)
+    search_fields = ("question", "answer", "product__name")
+    autocomplete_fields = ["product"]
 
 
 @admin.register(ProductCategory)

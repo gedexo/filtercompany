@@ -109,7 +109,11 @@ def products_by_category(request, slug):
 
 
 def product_details(request, slug):
-    product = get_object_or_404(Product.objects.select_related("category"), slug=slug, is_active=True)
+    product = get_object_or_404(
+        Product.objects.select_related("category").prefetch_related("faqs"),
+        slug=slug,
+        is_active=True,
+    )
     other_products = Product.objects.filter(is_active=True).exclude(slug=slug)
 
     form = ProductEnquiryForm(request.POST or None)

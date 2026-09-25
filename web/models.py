@@ -12,6 +12,7 @@ class Banner(models.Model):
     product = models.ForeignKey("web.Product", on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="banner-images/")
+    image_alt_text = models.CharField(blank=True, max_length=255, null=True)
 
     class Meta:
         verbose_name = "Banner"
@@ -26,8 +27,10 @@ class Banner(models.Model):
     
 class ProductCategory(models.Model):
     name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255,blank=True,null=True)
     slug = models.SlugField(unique=True, max_length=120, blank=True)
     image = models.ImageField(upload_to="product-categories/", blank=True, null=True)
+    image_alt_text = models.CharField(blank=True, max_length=255, null=True)
     description = HTMLField(blank=True, null=True)
     #meta
     meta_title = models.CharField(max_length=255, blank=True, null=True)
@@ -59,6 +62,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, max_length=100, blank=True)
     image = models.ImageField(upload_to="products/")
+    image_alt_text = models.CharField(blank=True, max_length=255, null=True)
     size = models.CharField(max_length=120, blank=True, null=True)
     price = models.CharField(max_length=120, blank=True, null=True)
     is_active = models.BooleanField(default=True)
@@ -100,6 +104,23 @@ class ProductEnquiry(models.Model):
         return self.name
 
 
+class ProductFaq(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="faqs",
+    )
+    question = models.TextField()
+    answer = models.TextField()
+
+    class Meta:
+        verbose_name = "Product FAQ"
+        verbose_name_plural = "Product FAQs"
+
+    def __str__(self):
+        return self.question
+
+
 class Testimonial(models.Model):
     name = models.CharField(max_length=150, blank=True, null=True)
     position = models.CharField(max_length=150, blank=True, null=True)
@@ -108,6 +129,7 @@ class Testimonial(models.Model):
         null=True,
         upload_to="testimonial-images",
     )
+    image_alt_text = models.CharField(blank=True, max_length=255, null=True)
     description = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -128,6 +150,7 @@ class Blog(models.Model):
     image = models.ImageField(
         upload_to="blog-images/",
     )
+    image_alt_text = models.CharField(blank=True, max_length=255, null=True)
     content = HTMLField()
     date = models.DateField()
 

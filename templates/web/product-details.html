@@ -40,7 +40,7 @@
                         <div class="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s">
                             <!-- Sidebar CTA Content Start -->
                             <div class="sidebar-cta-content">
-                                <img src="{% static 'web/images/logo.png' %}" alt="">
+                                <img src="{% static 'web/images/logo.png' %}" alt="logo">
                                 <h3>Need help? We are here to help you</h3>
                             </div>
                             <!-- Sidebar CTA Content End -->
@@ -98,7 +98,7 @@
                         <!-- Service Featured Image Start -->
                         <div class="service-featured-image">
                             <figure class="image-anime reveal">
-                                <img src="{{product.image.url}}" alt="">
+                                <img src="{{product.image.url}}" alt="{{ product.image_alt_text }}">
                             </figure>
                         </div>
                         <!-- Service Featured Image End -->
@@ -132,11 +132,36 @@
                         <!-- Service Entry Start -->
                         <div class="service-entry">
                             <p>{{product.description|safe}} </p>
-
-                          
-                          
                         </div>
                         <!-- Service Entry End -->
+
+                        {% if product.faqs.all %}
+                        <!-- Product FAQs Start -->
+                        <div class="page-single-faqs faq-accordion faq-accordion-box wow fadeInUp mt-5" data-wow-delay="0.4s">
+                            <div class="section-title mb-4">
+                                <h3>Frequently Asked Questions</h3>
+                            </div>
+                            <div class="accordion" id="productFaqAccordion">
+                                {% for faq in product.faqs.all %}
+                                <!-- FAQ Item Start -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                                        <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
+                                            {{ faq.question }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#productFaqAccordion">
+                                        <div class="accordion-body">
+                                            <p>{{ faq.answer|linebreaksbr }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FAQ Item End -->
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Product FAQs End -->
+                        {% endif %}
 
                      
                     </div>

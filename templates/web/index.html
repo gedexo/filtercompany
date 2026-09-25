@@ -21,7 +21,7 @@
                     <div class="hero-slider-image">
                         <img
                             src="{{ banner.image.url }}"
-                            alt="{{ banner.name }}"
+                            alt="{{ banner.image_alt_text }}"
                             class="img-fluid w-100"
                         >
                     </div>
@@ -56,7 +56,7 @@
                     <div class="hero-slider-image">
                         <img
                             src="{{ banner.image.url }}"
-                            alt="{{ banner.name }}"
+                            alt="{{ banner.image_alt_text }}"
                             class="img-fluid w-100"
                         >
                     </div>
@@ -110,7 +110,7 @@
                             <a class="category-card" href="{{ category.get_absolute_url }}">
                                 <figure class="category-card-image image-anime">
                                     {% if category.image %}
-                                    <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                                    <img src="{{ category.image.url }}" alt="{{ category.image_alt_text }}">
                                     {% else %}
                                     <span class="category-card-fallback">{{ category.name }}</span>
                                     {% endif %}
@@ -261,7 +261,7 @@
                         <div class="service-image">
                             <a href="{{product.get_absolute_url}}">
                                 <figure class="image-anime">
-                                    <img src="{{product.image.url}}" alt="">
+                                    <img src="{{product.image.url}}" alt="{{ product.image_alt_text }}">
                                 </figure>
                             </a>                            
                         </div>
@@ -647,7 +647,7 @@
                         <div class="post-featured-image">
                             <a href="{{blog.get_absolute_url}}" data-cursor-text="View">
                                 <figure class="image-anime">
-                                    <img src="{{blog.image.url}}" alt="">
+                                    <img src="{{blog.image.url}}" alt="{{ blog.image_alt_text }}">
                                 </figure>
                             </a>
 
