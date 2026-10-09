@@ -160,14 +160,13 @@
                         </div>
                         <span class="wwd-badge">Commercial</span>
                         <h3 class="wwd-title">
-                            <a href="{% url 'web:products_by_category' slug='commercial-water-purifier' %}">Commercial Water Purifiers</a>
+                            <a href="{% if category_links.commercial %}{{ category_links.commercial.get_absolute_url }}{% else %}{% url 'web:products' %}{% endif %}">Commercial Water Purifiers</a>
                         </h3>
                         <p class="wwd-desc">
                             RO plants and filtration systems built for offices, hotels, restaurants, and institutions across Kerala.
                         </p>
-                       
                         <div class="wwd-btn">
-                            <a href="{% url 'web:products_by_category' slug='commercial-water-purifier' %}">
+                            <a href="{% if category_links.commercial %}{{ category_links.commercial.get_absolute_url }}{% else %}{% url 'web:products' %}{% endif %}">
                                 <span>View Products</span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>
@@ -183,14 +182,13 @@
                         </div>
                         <span class="wwd-badge">Domestic / Home</span>
                         <h3 class="wwd-title">
-                            <a href="{% url 'web:products_by_category' slug='domestic-water-purifier' %}">Domestic Water Purifiers</a>
+                            <a href="{% if category_links.domestic %}{{ category_links.domestic.get_absolute_url }}{% else %}{% url 'web:products' %}{% endif %}">Domestic Water Purifiers</a>
                         </h3>
                         <p class="wwd-desc">
                             Compact RO, UV, and UF purifiers for homes across Calicut, suited to local borewell and municipal water conditions.
                         </p>
-                       
                         <div class="wwd-btn">
-                            <a href="{% url 'web:products_by_category' slug='domestic-water-purifier' %}">
+                            <a href="{% if category_links.domestic %}{{ category_links.domestic.get_absolute_url }}{% else %}{% url 'web:products' %}{% endif %}">
                                 <span>View Products</span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>
@@ -206,14 +204,13 @@
                         </div>
                         <span class="wwd-badge">Treatment Plant</span>
                         <h3 class="wwd-title">
-                            <a href="{% url 'web:products_by_category' slug='water-treatment-plant-wtp' %}">Water Treatment Plants (WTP)</a>
+                            <a href="{% if category_links.wtp %}{{ category_links.wtp.get_absolute_url }}{% else %}{% url 'web:products' %}{% endif %}">Water Treatment Plants (WTP)</a>
                         </h3>
                         <p class="wwd-desc">
                             Pressure sand filters, activated carbon filters, and dual media filters for bulk and pre-treatment applications across Kerala.
                         </p>
-                       
                         <div class="wwd-btn">
-                            <a href="{% url 'web:products_by_category' slug='water-treatment-plant-wtp' %}">
+                            <a href="{% if category_links.wtp %}{{ category_links.wtp.get_absolute_url }}{% else %}{% url 'web:products' %}{% endif %}">
                                 <span>View Products</span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>
@@ -229,14 +226,13 @@
                         </div>
                         <span class="wwd-badge">Industrial</span>
                         <h3 class="wwd-title">
-                            <a href="{% url 'web:products_by_category' slug='industrial-water-treatment' %}">Industrial Water Treatment</a>
+                            <a href="{% if category_links.industrial %}{{ category_links.industrial.get_absolute_url }}{% else %}{% url 'web:products' %}{% endif %}">Industrial Water Treatment</a>
                         </h3>
                         <p class="wwd-desc">
                             RO systems and UV disinfection for factories and process industries throughout Kerala.
                         </p>
-                      
                         <div class="wwd-btn">
-                            <a href="{% url 'web:products_by_category' slug='industrial-water-treatment' %}">
+                            <a href="{% if category_links.industrial %}{{ category_links.industrial.get_absolute_url }}{% else %}{% url 'web:products' %}{% endif %}">
                                 <span>View Products</span>
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>

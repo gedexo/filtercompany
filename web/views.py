@@ -87,10 +87,17 @@ def index(request):
 
 def about(request):
     product_categories = ProductCategory.objects.all()
+    category_links = {
+        "commercial": ProductCategory.objects.filter(name__icontains="commercial").first(),
+        "domestic": ProductCategory.objects.filter(name__icontains="domestic").first(),
+        "wtp": ProductCategory.objects.filter(name__icontains="treatment plant").first(),
+        "industrial": ProductCategory.objects.filter(name__icontains="industrial").first(),
+    }
     testimonial = Testimonial.objects.all()
     context = {
         "is_about": True,
         "product_categories": product_categories,
+        "category_links": category_links,
         "testimonial": testimonial,
     }
     return render(request, "web/about.html", context)
