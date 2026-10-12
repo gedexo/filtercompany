@@ -8,6 +8,7 @@ from .models import (
     ProductCategory,
     ProductEnquiry,
     ProductFaq,
+    ProductWhyChoose,
     Testimonial,
     Logo,
     Banner,
@@ -50,6 +51,11 @@ class ProductFaqInline(admin.TabularInline):
     extra = 1
 
 
+class ProductWhyChooseInline(admin.TabularInline):
+    model = ProductWhyChoose
+    extra = 1
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
@@ -63,7 +69,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ("category", "is_active")
     prepopulated_fields = {"slug": ("name",)}
     autocomplete_fields = ["category"]
-    inlines = [ProductFaqInline]
+    inlines = [ProductFaqInline, ProductWhyChooseInline]
 
 
 @admin.register(ProductFaq)
@@ -71,6 +77,14 @@ class ProductFaqAdmin(admin.ModelAdmin):
     list_display = ("question", "product")
     list_filter = ("product",)
     search_fields = ("question", "answer", "product__name")
+    autocomplete_fields = ["product"]
+
+
+@admin.register(ProductWhyChoose)
+class ProductWhyChooseAdmin(admin.ModelAdmin):
+    list_display = ("title", "product")
+    list_filter = ("product",)
+    search_fields = ("title", "product__name")
     autocomplete_fields = ["product"]
 
 

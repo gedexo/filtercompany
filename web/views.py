@@ -117,7 +117,7 @@ def products_by_category(request, slug):
 
 def product_details(request, slug):
     product = get_object_or_404(
-        Product.objects.select_related("category").prefetch_related("faqs"),
+        Product.objects.select_related("category").prefetch_related("faqs", "why_chooses"),
         slug=slug,
         is_active=True,
     )

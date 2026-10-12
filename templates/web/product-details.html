@@ -135,43 +135,344 @@
                         </div>
                         <!-- Service Entry End -->
 
-                        {% if product.faqs.all %}
-                        <!-- Product FAQs Start -->
-                        <div class="page-single-faqs faq-accordion faq-accordion-box wow fadeInUp mt-5" data-wow-delay="0.4s">
-                            <div class="section-title mb-4">
-                                <h3>Frequently Asked Questions</h3>
-                            </div>
-                            <div class="accordion" id="productFaqAccordion">
-                                {% for faq in product.faqs.all %}
-                                <!-- FAQ Item Start -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading{{ forloop.counter }}">
-                                        <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
-                                            {{ faq.question }}
-                                        </button>
-                                    </h2>
-                                    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#productFaqAccordion">
-                                        <div class="accordion-body">
-                                            <p>{{ faq.answer|linebreaksbr }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- FAQ Item End -->
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <!-- Product FAQs End -->
-                        {% endif %}
-
-                     
                     </div>
                     <!-- Service Single Content End -->
                 </div>
             </div>
+
+            {% if product.faqs.all %}
+            <!-- Product FAQs Section Underneath Start -->
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="product-faqs-box wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="section-title mb-4">
+                            <h3 class="faq-badge-title wow fadeInUp">FAQs</h3>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">
+                                <span>Frequently Asked</span> Questions
+                            </h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">Find quick answers about {{ product.name }} specifications, maintenance, and warranty.</p>
+                        </div>
+                        <div class="accordion product-faq-accordion" id="productFaqAccordion">
+                            {% for faq in product.faqs.all %}
+                            <!-- FAQ Item Start -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                                    <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
+                                        {{ faq.question }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#productFaqAccordion">
+                                    <div class="accordion-body">
+                                        <p>{{ faq.answer|linebreaksbr }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FAQ Item End -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Product FAQs Section Underneath End -->
+            {% endif %}
+
+            {% if product.why_chooses.all %}
+            <!-- Product Why Choose Section Underneath Start -->
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="product-why-choose-box wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="section-title mb-4">
+                            <h3 class="why-choose-badge-title wow fadeInUp">Why Choose Us</h3>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">
+                                <span>Why Choose</span> {{ product.name }}
+                            </h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">Key advantages and benefits of choosing {{ product.name }}.</p>
+                        </div>
+                        <div class="product-why-choose-grid">
+                            {% for item in product.why_chooses.all %}
+                            <div class="why-choose-item-card">
+                                {% if item.title %}
+                                <div class="why-choose-item-header">
+                                    <div class="why-choose-item-icon">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </div>
+                                    <h4 class="why-choose-item-title">{{ item.title }}</h4>
+                                </div>
+                                {% endif %}
+                                <div class="why-choose-item-body">
+                                    {{ item.description|safe }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Why Choose Section Underneath End -->
+            {% endif %}
         </div>
     </div>
     <!-- Page Service Single End -->
 
-    
+<style>
+/* Product Featured Image Sizing */
+.service-featured-image {
+    max-width: 480px !important;
+    margin: 0 auto 30px !important;
+    text-align: center !important;
+}
+
+.service-featured-image figure {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 15px !important;
+    background: var(--white-color) !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+    margin: 0 auto !important;
+}
+
+.service-featured-image img {
+    width: auto !important;
+    max-width: 100% !important;
+    max-height: 420px !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    display: block !important;
+    margin: 0 auto !important;
+    border-radius: 16px !important;
+}
+
+/* Product FAQs Box Section Underneath */
+.product-faqs-box {
+    background: #f7f9fc !important;
+    border: 1px solid #dce4ed !important;
+    border-radius: 28px !important;
+    padding: 45px 50px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+    margin-top: 20px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-faqs-box .section-title {
+    margin-bottom: 30px;
+}
+
+.product-faqs-box .section-title h3.faq-badge-title {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    color: var(--accent-color) !important;
+    margin-bottom: 12px !important;
+    display: inline-block !important;
+    background: #e6f0fa !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+}
+
+.product-faqs-box .section-title h2 {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 10px !important;
+}
+
+.product-faqs-box .section-title h2 span {
+    background: linear-gradient(90deg, var(--accent-color) 0.18%, var(--accent-secondary-color) 100.18%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.product-faqs-box .section-title p {
+    color: var(--text-color);
+    font-size: 16px;
+    margin: 0;
+}
+
+.product-faq-accordion .accordion-item {
+    background: #ffffff !important;
+    border: 1px solid #dbe2ec !important;
+    border-radius: 16px !important;
+    margin-bottom: 16px !important;
+    overflow: hidden !important;
+    transition: all 0.25s ease-in-out !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+}
+
+.product-faq-accordion .accordion-item:hover {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 6px 20px rgba(23, 124, 212, 0.1) !important;
+}
+
+.product-faq-accordion .accordion-header .accordion-button {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    padding: 22px 28px !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: all 0.25s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.product-faq-accordion .accordion-header .accordion-button:not(.collapsed) {
+    background: #eef5fc !important;
+    color: var(--accent-color) !important;
+    border-bottom: 1px solid #dbe2ec !important;
+}
+
+.product-faq-accordion .accordion-body {
+    padding: 22px 28px !important;
+    background: #ffffff !important;
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+    color: var(--text-color) !important;
+}
+
+.product-faq-accordion .accordion-body p {
+    margin: 0 !important;
+}
+
+/* Product Why Choose Box Section */
+.product-why-choose-box {
+    background: #f7f9fc !important;
+    border: 1px solid #dce4ed !important;
+    border-radius: 28px !important;
+    padding: 45px 50px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+    margin-top: 20px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-why-choose-box .section-title {
+    margin-bottom: 30px;
+}
+
+.product-why-choose-box .section-title h3.why-choose-badge-title {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    color: var(--accent-color) !important;
+    margin-bottom: 12px !important;
+    display: inline-block !important;
+    background: #e6f0fa !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+}
+
+.product-why-choose-box .section-title h2 {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 10px !important;
+}
+
+.product-why-choose-box .section-title h2 span {
+    background: linear-gradient(90deg, var(--accent-color) 0.18%, var(--accent-secondary-color) 100.18%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.product-why-choose-box .section-title p {
+    color: var(--text-color);
+    font-size: 16px;
+    margin: 0;
+}
+
+.product-why-choose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.why-choose-item-card {
+    background: #ffffff !important;
+    border: 1px solid #dbe2ec !important;
+    border-radius: 16px !important;
+    padding: 28px !important;
+    transition: all 0.25s ease-in-out !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.why-choose-item-card:hover {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 8px 24px rgba(23, 124, 212, 0.12) !important;
+    transform: translateY(-2px);
+}
+
+.why-choose-item-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.why-choose-item-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #eaf3fc;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.why-choose-item-title {
+    font-size: 19px !important;
+    font-weight: 600 !important;
+    color: var(--primary-color) !important;
+    margin: 0 !important;
+}
+
+.why-choose-item-body {
+    color: var(--text-color);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.why-choose-item-body p:last-child {
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .product-faqs-box,
+    .product-why-choose-box {
+        padding: 30px 20px !important;
+        border-radius: 20px !important;
+    }
+    .product-faqs-box .section-title h2,
+    .product-why-choose-box .section-title h2 {
+        font-size: 26px !important;
+    }
+    .product-faq-accordion .accordion-header .accordion-button {
+        padding: 16px 20px !important;
+        font-size: 16px !important;
+    }
+    .product-faq-accordion .accordion-body {
+        padding: 16px 20px !important;
+        font-size: 15px !important;
+    }
+    .product-why-choose-grid {
+        grid-template-columns: 1fr;
+    }
+    .why-choose-item-card {
+        padding: 20px !important;
+    }
+}
+</style>
 
 {% endblock %}

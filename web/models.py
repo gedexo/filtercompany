@@ -121,6 +121,23 @@ class ProductFaq(models.Model):
         return self.question
 
 
+class ProductWhyChoose(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="why_chooses",
+    )
+    title = models.CharField(max_length=255, blank=True, null=True)
+    description = HTMLField()
+
+    class Meta:
+        verbose_name = "Product Why Choose"
+        verbose_name_plural = "Product Why Chooses"
+
+    def __str__(self):
+        return self.title if self.title else f"Why Choose - {self.product.name}"
+
+
 class Testimonial(models.Model):
     name = models.CharField(max_length=150, blank=True, null=True)
     position = models.CharField(max_length=150, blank=True, null=True)
