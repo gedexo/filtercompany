@@ -2426,20 +2426,26 @@ header.main-header .header-sticky.active{
 
 .post-featured-image a{
     display: block;
-	border-radius: 20px 20px 0 0;
+	border-radius: 29px 29px 0 0;
 	overflow: hidden;
 	cursor: none;
 }
 
+.post-featured-image figure{
+	display: block;
+	margin: 0;
+}
+
+/* Show the full blog image (no forced ratio / cropping) */
 .post-featured-image img{
+    display: block;
     width: 100%;
-    aspect-ratio: 1 / 0.7;
-    object-fit: cover;
+    height: auto;
     transition: all 0.4s ease-in-out;
 }
 
 .post-item:hover .post-featured-image img{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .post-item-meta{
@@ -5822,6 +5828,10 @@ header.main-header .header-sticky.active{
 
 	.post-item{
 		border-radius: 20px;
+	}
+
+	.post-featured-image a{
+		border-radius: 19px 19px 0 0;
 	}
 
 	.post-item-meta a{

@@ -37,7 +37,7 @@
                         <div class="post-featured-image">
                             <a href="{{blog.get_absolute_url}}" data-cursor-text="View">
                                 <figure class="image-anime">
-                                    <img src="{{blog.image.url}}" alt="">
+                                    <img src="{{blog.image.url}}" alt="{{ blog.image_alt_text|default:blog.title }}" loading="lazy">
                                 </figure>
                             </a>
 
