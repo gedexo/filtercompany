@@ -4250,9 +4250,9 @@ header.main-header .header-sticky.active{
 }
 
 .post-image img{
+	display: block;
 	width: 100%;
-	aspect-ratio: 1 / 0.50;
-	object-fit: cover;
+	height: auto;
 	border-radius: 30px;
 }
 
@@ -7154,10 +7154,6 @@ header.main-header .header-sticky.active{
 		font-size: 16px;
 	}
 	
-	.post-image img{
-		aspect-ratio: 1 / 0.7;
-	}
-	
 	.post-entry blockquote{
 		background-position: 15px 15px;
 		padding: 60px 15px 15px 15px;
@@ -8072,4 +8068,337 @@ background: transparent;
 }
 .faq-accordion:not(.product-faq-accordion) .accordion-item{
 	border:none !important;
+}
+
+
+/************************************/
+/***  Rich Content (blog + product) ***/
+/***  (TinyMCE HTML field output)  ***/
+/************************************/
+
+.page-single-post .post-content{
+	max-width: 960px;
+}
+
+.page-single-post .post-image{
+	margin-bottom: 40px;
+}
+
+.page-single-post .post-image figure{
+	border-radius: 24px;
+	box-shadow: 0 20px 50px rgba(34, 38, 41, 0.08);
+}
+
+.page-single-post .post-image img{
+	width: 100%;
+	height: auto !important;
+	aspect-ratio: auto !important;
+	object-fit: contain;
+	border-radius: 24px;
+}
+
+.blog-rich-content{
+	font-size: 18px;
+	line-height: 1.75;
+	color: var(--text-color);
+	overflow-wrap: break-word;
+	border-bottom: 0;
+	padding-bottom: 40px;
+	margin-bottom: 0;
+}
+
+/* Product detail description */
+.service-entry.blog-rich-content{
+	padding-bottom: 0;
+	margin-bottom: 60px;
+}
+
+/* Neutralise font-size / font-family that TinyMCE pastes inline, so headings keep their hierarchy */
+.blog-rich-content span,
+.blog-rich-content font{
+	font-size: inherit !important;
+	font-family: inherit !important;
+	line-height: inherit !important;
+}
+
+.blog-rich-content > *:first-child{
+	margin-top: 0 !important;
+}
+
+/* Headings: clear, descending hierarchy */
+.blog-rich-content h1,
+.blog-rich-content h2,
+.blog-rich-content h3,
+.blog-rich-content h4,
+.blog-rich-content h5,
+.blog-rich-content h6{
+	color: var(--primary-color);
+	font-weight: 700;
+	line-height: 1.3;
+	letter-spacing: -0.01em;
+	margin: 1.6em 0 0.6em;
+}
+
+.blog-rich-content h1{ font-size: 40px; }
+
+.blog-rich-content h2{
+	font-size: 32px;
+	padding-bottom: 12px;
+	border-bottom: 2px solid var(--divider-color);
+	position: relative;
+}
+
+.blog-rich-content h2::after{
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 70px;
+	height: 2px;
+	background: var(--accent-color);
+}
+
+.blog-rich-content h3{ font-size: 26px; }
+.blog-rich-content h4{ font-size: 22px; color: var(--accent-secondary-color); }
+.blog-rich-content h5{ font-size: 19px; }
+.blog-rich-content h6{ font-size: 17px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* Paragraphs & inline */
+.blog-rich-content p{
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0 0 1.1em;
+}
+
+.blog-rich-content p:empty{
+	display: none;
+}
+
+.blog-rich-content strong,
+.blog-rich-content b,
+.blog-rich-content p strong{
+	font-size: inherit;
+	font-weight: 700;
+	color: var(--primary-color);
+}
+
+.blog-rich-content a{
+	color: var(--accent-color);
+	font-weight: 600;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
+}
+
+.blog-rich-content a:hover{
+	color: var(--accent-secondary-color);
+}
+
+/* Lists */
+.blog-rich-content ul,
+.blog-rich-content ol{
+	margin: 0 0 1.4em;
+	padding-left: 1.5em;
+}
+
+.blog-rich-content ul{ list-style: disc; }
+.blog-rich-content ol{ list-style: decimal; }
+
+.blog-rich-content ul li,
+.blog-rich-content ol li{
+	font-size: inherit;
+	font-weight: 400;
+	line-height: 1.7;
+	color: var(--text-color);
+	margin-bottom: 0.5em;
+	padding-left: 4px;
+}
+
+.blog-rich-content ul li::before,
+.blog-rich-content ol li::before{
+	content: none !important;
+}
+
+.blog-rich-content li::marker{
+	color: var(--accent-color);
+	font-weight: 700;
+}
+
+.blog-rich-content li > p{
+	margin: 0;
+}
+
+.blog-rich-content ul ul,
+.blog-rich-content ol ol,
+.blog-rich-content ul ol,
+.blog-rich-content ol ul{
+	margin: 0.5em 0 0;
+}
+
+/* Images & media inside content */
+.blog-rich-content img{
+	max-width: 100%;
+	height: auto !important;
+	border-radius: 16px;
+	margin: 10px 0 20px;
+}
+
+.blog-rich-content iframe,
+.blog-rich-content video{
+	max-width: 100%;
+	border-radius: 16px;
+}
+
+.blog-rich-content hr{
+	border: 0;
+	border-top: 1px solid var(--divider-color);
+	margin: 2em 0;
+	opacity: 1;
+}
+
+/* Blockquote */
+.blog-rich-content blockquote{
+	background: var(--secondary-color);
+	border-left: 4px solid var(--accent-color);
+	border-radius: 0 16px 16px 0;
+	padding: 24px 28px;
+	margin: 0 0 1.5em;
+}
+
+.blog-rich-content blockquote p{
+	font-size: 19px;
+	font-style: italic;
+	color: var(--primary-color);
+}
+
+/* Tables */
+.blog-rich-content .table-scroll{
+	width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	margin: 0 0 1.8em;
+	border: 1px solid #E3E8EF;
+	border-radius: 16px;
+	box-shadow: 0 8px 30px rgba(34, 38, 41, 0.06);
+	background: var(--white-color);
+}
+
+.blog-rich-content table{
+	width: 100% !important;
+	min-width: 560px;
+	height: auto !important;
+	border-collapse: collapse !important;
+	border-spacing: 0;
+	border: 0 !important;
+	margin: 0 0 1.8em;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.blog-rich-content .table-scroll > table{
+	margin: 0;
+}
+
+.blog-rich-content table col{
+	width: auto !important;
+}
+
+.blog-rich-content table th,
+.blog-rich-content table td{
+	width: auto !important;
+	height: auto !important;
+	padding: 14px 18px;
+	text-align: left;
+	vertical-align: top;
+	border: 0 !important;
+	border-bottom: 1px solid #E3E8EF !important;
+	color: var(--text-color);
+}
+
+.blog-rich-content table td + td,
+.blog-rich-content table th + th,
+.blog-rich-content table th + td,
+.blog-rich-content table td + th{
+	border-left: 1px solid #E3E8EF !important;
+}
+
+.blog-rich-content table tr:last-child td,
+.blog-rich-content table tr:last-child th{
+	border-bottom: 0 !important;
+}
+
+.blog-rich-content table td p,
+.blog-rich-content table th p{
+	margin: 0;
+}
+
+/* Header row: <thead>, <th>, or (TinyMCE default) the first row of the table body */
+.blog-rich-content table thead th,
+.blog-rich-content table thead td,
+.blog-rich-content table > tbody:first-child > tr:first-child > td,
+.blog-rich-content table > colgroup + tbody > tr:first-child > td,
+.blog-rich-content table th{
+	background: var(--accent-secondary-color);
+	color: var(--white-color);
+	font-weight: 700;
+	border-bottom: 0 !important;
+}
+
+.blog-rich-content table thead th *,
+.blog-rich-content table thead td *,
+.blog-rich-content table > tbody:first-child > tr:first-child > td *,
+.blog-rich-content table > colgroup + tbody > tr:first-child > td *,
+.blog-rich-content table th *{
+	color: var(--white-color);
+}
+
+/* Body rows: emphasised first column, zebra stripes, hover */
+.blog-rich-content table tbody tr:not(:first-child) td:first-child,
+.blog-rich-content table thead + tbody tr td:first-child{
+	font-weight: 600;
+	color: var(--primary-color);
+	background: #F4F7FB;
+}
+
+.blog-rich-content table tbody tr:nth-child(odd):not(:first-child) td:not(:first-child){
+	background: #FAFBFD;
+}
+
+.blog-rich-content table tbody tr:not(:first-child):hover td{
+	background: #EAF3FC;
+}
+
+@media only screen and (max-width: 991px){
+	.page-single-post .post-image{
+		margin-bottom: 30px;
+	}
+
+	.blog-rich-content{ font-size: 17px; }
+	.blog-rich-content h1{ font-size: 32px; }
+	.blog-rich-content h2{ font-size: 26px; }
+	.blog-rich-content h3{ font-size: 22px; }
+	.blog-rich-content h4{ font-size: 20px; }
+	.blog-rich-content h5{ font-size: 18px; }
+}
+
+@media only screen and (max-width: 767px){
+	.page-single-post .post-image figure,
+	.page-single-post .post-image img{
+		border-radius: 16px;
+	}
+
+	.blog-rich-content{ font-size: 16px; line-height: 1.7; }
+	.blog-rich-content h1{ font-size: 26px; }
+	.blog-rich-content h2{ font-size: 22px; }
+	.blog-rich-content h3{ font-size: 20px; }
+	.blog-rich-content h4{ font-size: 18px; }
+	.blog-rich-content h5,
+	.blog-rich-content h6{ font-size: 16px; }
+
+	.blog-rich-content table{ font-size: 14px; }
+	.blog-rich-content table th,
+	.blog-rich-content table td{ padding: 10px 12px; }
+
+	.blog-rich-content blockquote{ padding: 18px 20px; }
+	.blog-rich-content blockquote p{ font-size: 17px; }
 }

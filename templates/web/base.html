@@ -120,6 +120,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="{% static 'web/js/wow.min.js' %}?v={{ static_asset_version }}"></script>
     <!-- Main Custom js file -->
     <script src="{% static 'web/js/function.js' %}?v={{ static_asset_version }}"></script>
+    <script>
+        // Wrap rich-text (TinyMCE) tables so wide tables scroll on mobile instead of breaking the layout
+        document.querySelectorAll('.blog-rich-content table').forEach(function (table) {
+            if (table.parentElement.classList.contains('table-scroll')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-scroll';
+            table.parentNode.insertBefore(wrap, table);
+            wrap.appendChild(table);
+        });
+    </script>
 </body>
 </html>
 
