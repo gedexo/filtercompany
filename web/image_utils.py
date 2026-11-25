@@ -1,7 +1,6 @@
 """Convert uploaded images to WebP, as high quality as possible while staying under a size limit."""
 
 import io
-import os
 
 from PIL import Image, ImageOps
 
@@ -53,7 +52,3 @@ def compress_to_webp(file_obj, max_bytes=MAX_BYTES):
             return _encode(img, MIN_QUALITY)
         img = img.resize((max(1, int(w * 0.85)), max(1, int(h * 0.85))), Image.LANCZOS)
 
-
-def webp_name(original_name):
-    base = os.path.splitext(os.path.basename(original_name))[0]
-    return f"{base}.webp"

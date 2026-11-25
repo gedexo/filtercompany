@@ -1,9 +1,41 @@
+import os
+import re
+
 from django.db import models
 from django.urls import reverse
 from tinymce.models import HTMLField
 
 
-class Banner(models.Model):
+class ImageAltMixin:
+    """`obj.image_alt`: the alt text if set, else the title / name, else a readable file name."""
+
+    alt_fallback_fields = ("image_alt_text", "title", "name")
+
+    def image_label(self):
+        """Alt text, else title / name (ignoring empty and meaningless labels like "1")."""
+        for field in self.alt_fallback_fields:
+            value = str(getattr(self, field, None) or "").strip()
+            if value and not value.isdigit():
+                return value
+        return ""
+
+    @property
+    def image_alt(self):
+        label = self.image_label()
+        if label:
+            return label
+
+        image = getattr(self, "image", None)
+        if image and image.name:
+            stem = os.path.splitext(os.path.basename(image.name))[0]
+            stem = re.sub(r"_[A-Za-z0-9]{7}$", "", stem)  # Django's random duplicate suffix
+            stem = re.sub(r"[-_]+", " ", stem).strip()
+            if stem:
+                return stem[:1].upper() + stem[1:]
+        return ""
+
+
+class Banner(ImageAltMixin, models.Model):
     BANNER_CHOICES = [
     ('mobile','Mobile'),
     ('system','System'),
@@ -25,7 +57,7 @@ class Banner(models.Model):
         return reverse('web:product_details', kwargs={'slug': self.product.slug})
     
     
-class ProductCategory(models.Model):
+class ProductCategory(ImageAltMixin, models.Model):
     name = models.CharField(max_length=255)
     title = models.CharField(max_length=255,blank=True,null=True)
     slug = models.SlugField(unique=True, max_length=120, blank=True)
@@ -51,7 +83,7 @@ class ProductCategory(models.Model):
         return reverse("web:products_by_category", kwargs={"slug": self.slug})
 
 
-class Product(models.Model):
+class Product(ImageAltMixin, models.Model):
     category = models.ForeignKey(
         ProductCategory,
         on_delete=models.SET_NULL,
@@ -138,7 +170,7 @@ class ProductWhyChoose(models.Model):
         return self.title if self.title else f"Why Choose - {self.product.name}"
 
 
-class Testimonial(models.Model):
+class Testimonial(ImageAltMixin, models.Model):
     name = models.CharField(max_length=150, blank=True, null=True)
     position = models.CharField(max_length=150, blank=True, null=True)
     image = models.ImageField(
@@ -157,7 +189,7 @@ class Testimonial(models.Model):
         return str(self.name)
 
 
-class Blog(models.Model):
+class Blog(ImageAltMixin, models.Model):
     title = models.CharField(max_length=120, blank=True, null=True)
     slug = models.SlugField(unique=True, max_length=100, blank=True)
     keyword = models.TextField( blank=True, null=True)
@@ -204,7 +236,7 @@ class Enquiry(models.Model):
         return str(self.name)
 
 
-class Logo(models.Model):
+class Logo(ImageAltMixin, models.Model):
     image = models.ImageField(upload_to='partner_logos/')
 
     def __str__(self):

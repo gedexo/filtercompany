@@ -33,7 +33,7 @@
                     {% if blog.image %}
                     <div class="post-image">
                         <figure>
-                            <img src="{{blog.image.url}}" alt="{{blog.image_alt_text|default:blog.title}}">
+                            <img src="{{blog.image.url}}" alt="{{ blog.image_alt }}">
                         </figure>
                     </div>
                     {% endif %}

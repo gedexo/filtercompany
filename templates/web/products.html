@@ -55,7 +55,7 @@
                         <div class="service-image">
                             <a href="{{service.get_absolute_url}}">
                                 <figure class="image-anime">
-                                    <img src="{{service.image.url}}" alt="{{ service.image_alt_text }}">
+                                    <img src="{{service.image.url}}" alt="{{ service.image_alt }}">
                                 </figure>
                             </a>                            
                         </div>
@@ -95,7 +95,7 @@
                 {% comment %} {% if category.image %}
                 <div class="col-lg-5 mb-4 mb-lg-0">
                     <figure class="image-anime rounded-4 overflow-hidden category-image-box">
-                        <img class="category-image" src="{{ category.image.url }}" alt="{{ category.name }}">
+                        <img class="category-image" src="{{ category.image.url }}" alt="{{ category.image_alt }}">
                     </figure>
                 </div>
                 {% endif %} {% endcomment %}
